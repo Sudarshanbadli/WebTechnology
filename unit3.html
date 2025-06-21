@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: JavaScript Study Guide</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        .navbar {
+            background: #dbeafe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #1e3a8a;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #10b981;
+            transform: scale(1.1);
+        }
+        /* Accordion */
+        .accordion-item {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #10b981;
+        }
+        .accordion-button {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+            border-radius: 12px !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background: #10b981;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background: #f9fafb;
+            border-radius: 0 0 12px 12px;
+        }
+        /* Progress Circle */
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .accordion-collapse.show .progress-circle {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Rotate Animation */
+        .rotate-in {
+            opacity: 0;
+            transform: rotateX(90deg);
+            animation: rotateIn 0.6s ease forwards;
+        }
+        @keyframes rotateIn {
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+        /* Code Block */
+        pre {
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Footer */
+        .footer {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #10b981;
+        }
+        .footer a {
+            color: #1e3a8a;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer a:hover {
+            color: #10b981;
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 576px) {
+            .accordion-item {
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Unit 3: JavaScript </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                       <li class="nav-item">
+                        <a class="nav-link" href="index.html">🏠 Home</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">✨About Us</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">✨Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- 10-Mark Questions -->
+        <section id="ten-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">10-Mark Questions</h2>
+            <div class="accordion" id="accordionTenMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1-10" aria-expanded="true" aria-controls="q1-10">
+                            1. Write about statements in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q1-10" class="accordion-collapse collapse show" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: JavaScript statements are instructions executed by the JavaScript engine to perform actions, such as assigning values, controlling flow, or defining logic. Each statement typically ends with a semicolon (<code>;</code>), though JavaScript’s Automatic Semicolon Insertion (ASI) can add them implicitly.</p>
+                            <p><strong>Types of JavaScript Statements</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Declaration Statements</strong>: Define variables or functions.
+                                    <ul class="list-disc ms-4">
+                                        <li><code>var</code>, <code>let</code>, <code>const</code>: Declare variables. <br><strong>Example</strong>: <pre><code>let x = 10;</code></pre></li>
+                                        <li><code>function</code>: Declares a function. <br><strong>Example</strong>: <pre><code>function greet() { return "Hello"; }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Expression Statements</strong>: Evaluate to a value and perform an action.
+                                    <ul class="list-disc ms-4">
+                                        <li>Assignment: <code>x = 5;</code></li>
+                                        <li>Function call: <code>console.log("Hi");</code></li>
+                                        <li>Arithmetic: <code>y = x + 2;</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Control Flow Statements</strong>: Manage execution order.
+                                    <ul class="list-disc ms-4">
+                                        <li><code>if</code>, <code>else if</code>, <code>else</code>: Conditional branching. <br><strong>Example</strong>: <pre><code>if (x > 0) { console.log("Positive"); } else { console.log("Non-positive"); }</code></pre></li>
+                                        <li><code>switch</code>: Multi-case branching. <br><strong>Example</strong>: <pre><code>switch (day) {
+  case 1: console.log("Monday"); break;
+  default: console.log("Other day");
+}</code></pre></li>
+                                        <li><code>for</code>, <code>while</code>, <code>do...while</code>: Loops. <br><strong>Example</strong>: <pre><code>for (let i = 0; i < 3; i++) { console.log(i); }</code></pre></li>
+                                        <li><code>break</code>, <code>continue</code>: Control loop execution. <br><strong>Example</strong>: <pre><code>for (let i = 0; i < 5; i++) { if (i === 3) break; console.log(i); }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Exception Handling Statements</strong>: Manage errors.
+                                    <ul class="list-disc ms-4">
+                                        <li><code>try</code>, <code>catch</code>, <code>finally</code>: Handle errors. <br><strong>Example</strong>: <pre><code>try { let num = 1 / 0; } catch (e) { console.log("Error:", e); }</code></pre></li>
+                                        <li><code>throw</code>: Throws custom errors. <br><strong>Example</strong>: <pre><code>throw new Error("Invalid input");</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Other Statements</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>return</code>: Exits a function with a value. <br><strong>Example</strong>: <pre><code>function sum(a, b) { return a + b; }</code></pre></li>
+                                        <li><code>import</code>, <code>export</code>: Module handling (ES6). <br><strong>Example</strong>: <pre><code>export const pi = 3.14;</code></pre></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>let score = 85;
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 80) {
+  console.log("Grade: B");
+} else {
+  console.log("Grade: C");
+}
+for (let i = 1; i <= 3; i++) {
+  console.log("Loop iteration:", i);
+}
+try {
+  if (score < 0) throw new Error("Negative score");
+  console.log("Score is valid");
+} catch (e) {
+  console.log("Error:", e.message);
+}</code></pre>
+                            <p><strong>Output</strong>: <br><code>Grade: B<br>Loop iteration: 1<br>Loop iteration: 2<br>Loop iteration: 3<br>Score is valid</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript statements include declarations, expressions, control flow, exception handling, and more, enabling dynamic program logic. Mastery of these statements is crucial for writing robust JavaScript code, ensuring high marks in exams.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-10" aria-expanded="false" aria-controls="q2-10">
+                            2. Write about array in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q2-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: An array in JavaScript is a special object used to store multiple values in a single variable, accessed via zero-based indices. Arrays are dynamic, can hold mixed data types, and come with built-in methods for manipulation.</p>
+                            <p><strong>Creating Arrays</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Array Literal</strong>: <code>let arr = [1, 2, 3];</code></li>
+                                <li><strong>Array Constructor</strong>: <code>let arr = new Array(1, 2, 3);</code></li>
+                                <li><strong>Empty Array</strong>: <code>let arr = [];</code> or <code>new Array(5);</code> (creates array of length 5).</li>
+                            </ul>
+                            <p><strong>Properties and Methods</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Properties</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>length</code>: Returns number of elements. <br><strong>Example</strong>: <pre><code>let arr = [1, 2]; console.log(arr.length); // 2</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Accessing/Modifying Elements</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Index access: <code>arr[0]</code> retrieves first element.</li>
+                                        <li>Modify: <code>arr[1] = 5;</code> changes second element.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Common Methods</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>push()</code>: Adds element to end. <br><strong>Example</strong>: <pre><code>arr.push(4); // [1, 2, 4]</code></pre></li>
+                                        <li><code>pop()</code>: Removes last element. <br><strong>Example</strong>: <pre><code>arr.pop(); // [1, 2]</code></pre></li>
+                                        <li><code>shift()</code>: Removes first element. <br><strong>Example</strong>: <pre><code>arr.shift(); // [2]</code></pre></li>
+                                        <li><code>unshift()</code>: Adds element to start. <br><strong>Example</strong>: <pre><code>arr.unshift(0); // [0, 2]</code></pre></li>
+                                        <li><code>splice()</code>: Adds/removes elements at index. <br><strong>Example</strong>: <pre><code>arr.splice(1, 1, 3); // [0, 3]</code></pre></li>
+                                        <li><code>slice()</code>: Extracts a portion. <br><strong>Example</strong>: <pre><code>let newArr = arr.slice(0, 1); // [0]</code></pre></li>
+                                        <li><code>map()</code>: Applies function to each element. <br><strong>Example</strong>: <pre><code>arr.map(x => x * 2); // [0, 6]</code></pre></li>
+                                        <li><code>filter()</code>: Creates array of elements passing test. <br><strong>Example</strong>: <pre><code>arr.filter(x => x > 0); // [3]</code></pre></li>
+                                        <li><code>reduce()</code>: Reduces array to single value. <br><strong>Example</strong>: <pre><code>arr.reduce((sum, x) => sum + x, 0); // 3</code></pre></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>let fruits = ["Apple", "Banana"];
+console.log("Length:", fruits.length); // 2
+fruits.push("Orange"); // ["Apple", "Banana", "Orange"]
+fruits.pop(); // ["Apple", "Banana"]
+fruits[1] = "Mango"; // ["Apple", "Mango"]
+let upper = fruits.map(item => item.toUpperCase()); // ["APPLE", "MANGO"]
+console.log("Uppercase:", upper);
+let filtered = fruits.filter(item => item.length > 5); // ["Mango"]
+console.log("Filtered:", filtered);</code></pre>
+                            <p><strong>Output</strong>: <br><code>Length: 2<br>Uppercase: ["APPLE", "MANGO"]<br>Filtered: ["Mango"]</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript arrays are versatile for storing and manipulating data, with dynamic sizing and powerful methods like <code>map</code>, <code>filter</code>, and <code>reduce</code>. Understanding arrays is essential for data handling in JavaScript, ensuring high exam marks.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-10" aria-expanded="false" aria-controls="q3-10">
+                            3. Write about functions in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q3-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: A function in JavaScript is a reusable block of code designed to perform a specific task, defined using the <code>function</code> keyword or as expressions. Functions can accept parameters, return values, and support modularity in code.</p>
+                            <p><strong>Types of Functions</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Function Declaration</strong>: Named function defined with <code>function</code>. <br><strong>Example</strong>: <pre><code>function add(a, b) { return a + b; }</code></pre></li>
+                                <li><strong>Function Expression</strong>: Function assigned to a variable. <br><strong>Example</strong>: <pre><code>const subtract = function(a, b) { return a - b; };</code></pre></li>
+                                <li><strong>Arrow Function (ES6)</strong>: Concise syntax, no own <code>this</code>. <br><strong>Example</strong>: <pre><code>const multiply = (a, b) => a * b;</code></pre></li>
+                                <li><strong>Immediately Invoked Function Expression (IIFE)</strong>: Runs immediately. <br><strong>Example</strong>: <pre><code>(function() { console.log("IIFE"); })();</code></pre></li>
+                                <li><strong>Callback Function</strong>: Passed as an argument to another function. <br><strong>Example</strong>: <pre><code>setTimeout(() => console.log("Delayed"), 1000);</code></pre></li>
+                            </ol>
+                            <p><strong>Key Features</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Parameters</strong>: Inputs to functions, with default values (ES6). <br><strong>Example</strong>: <code>function greet(name = "Guest") { return "Hello, " + name; }</code></li>
+                                <li><strong>Return</strong>: Outputs a value; stops execution. <br><strong>Example</strong>: <code>return x * y;</code></li>
+                                <li><strong>Scope</strong>: Variables declared with <code>let</code>/<code>const</code> are block-scoped; <code>var</code> is function-scoped.</li>
+                                <li><strong>Closures</strong>: Functions retain access to outer scope variables. <br><strong>Example</strong>: <pre><code>function outer() { let x = 10; return function() { return x; }; }</code></pre></li>
+                                <li><strong>Hoisting</strong>: Function declarations are hoisted, expressions are not.</li>
+                            </ul>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>function calculate(a, b, operation = "add") {
+  if (operation === "add") return a + b;
+  else if (operation === "subtract") return a - b;
+  else return a * b;
+}
+const square = x => x * x;
+console.log(calculate(5, 3)); // 8
+console.log(calculate(5, 3, "subtract")); // 2
+console.log(square(4)); // 16
+setTimeout(() => console.log("Callback executed"), 1000);</code></pre>
+                            <p><strong>Output</strong>: <br><code>8<br>2<br>16<br>(after 1s) Callback executed</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript functions, including declarations, expressions, and arrow functions, enable reusable, modular code. Features like closures, callbacks, and default parameters enhance flexibility, making functions a cornerstone of JavaScript programming, vital for exam success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-Mark Questions -->
+        <section id="five-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">5-Mark Questions</h2>
+            <div class="accordion" id="accordionFiveMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1-5" aria-expanded="false" aria-controls="q1-5">
+                            1. Write about string manipulators in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q1-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: String manipulators in JavaScript are built-in methods and properties used to process, modify, or extract information from strings, which are sequences of characters enclosed in quotes (<code>" "</code>, <code>' '</code>, or <code>` `</code>).</p>
+                            <p><strong>Common String Methods</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>length</code>: Returns string length. <br><strong>Example</strong>: <pre><code>"Hello".length; // 5</code></pre></li>
+                                <li><code>toUpperCase()</code>, <code>toLowerCase()</code>: Changes case. <br><strong>Example</strong>: <pre><code>"Hello".toUpperCase(); // "HELLO"</code></pre></li>
+                                <li><code>trim()</code>: Removes whitespace from both ends. <br><strong>Example</strong>: <pre><code>"  Hi  ".trim(); // "Hi"</code></pre></li>
+                                <li><code>slice(start, end)</code>: Extracts a portion. <br><strong>Example</strong>: <pre><code>"Hello".slice(1, 4); // "ell"</code></pre></li>
+                                <li><code>substring(start, end)</code>: Similar to <code>slice</code>. <br><strong>Example</strong>: <pre><code>"Hello".substring(1, 4); // "ell"</code></pre></li>
+                                <li><code>replace(search, new)</code>: Replaces first occurrence. <br><strong>Example</strong>: <pre><code>"Hi all".replace("all", "there"); // "Hi there"</code></pre></li>
+                                <li><code>split(separator)</code>: Splits string into array. <br><strong>Example</strong>: <pre><code>"a,b,c".split(","); // ["a", "b", "c"]</code></pre></li>
+                                <li><code>indexOf(search)</code>: Returns index of first occurrence. <br><strong>Example</strong>: <pre><code>"Hello".indexOf("l"); // 2</code></pre></li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>let str = "  JavaScript  ";
+console.log(str.length); // 13
+console.log(str.trim().toUpperCase()); // "JAVASCRIPT"
+console.log(str.slice(3, 7)); // "aScr"
+console.log(str.replace("Java", "Type")); // "  TypeScript  "
+console.log(str.trim().split("a")); // ["J", "v", "Script"]</code></pre>
+                            <p><strong>Output</strong>: <br><code>13<br>JAVASCRIPT<br>aScr<br>  TypeScript  <br>["J", "v", "Script"]</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript string manipulators like <code>trim</code>, <code>slice</code>, and <code>replace</code> enable efficient string processing. These methods are essential for tasks like text formatting and data parsing, critical for web development and exam answers.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-5" aria-expanded="false" aria-controls="q2-5">
+                            2. Write about mathematical functions in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q2-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Mathematical functions in JavaScript are provided by the <code>Math</code> object, a built-in global object containing methods and constants for performing mathematical operations.</p>
+                            <p><strong>Key Mathematical Functions</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>Math.round(x)</code>: Rounds to nearest integer. <br><strong>Example</strong>: <pre><code>Math.round(4.6); // 5</code></pre></li>
+                                <li><code>Math.floor(x)</code>: Rounds down. <br><strong>Example</strong>: <pre><code>Math.floor(4.9); // 4</code></pre></li>
+                                <li><code>Math.ceil(x)</code>: Rounds up. <br><strong>Example</strong>: <pre><code>Math.ceil(4.1); // 5</code></pre></li>
+                                <li><code>Math.abs(x)</code>: Returns absolute value. <br><strong>Example</strong>: <pre><code>Math.abs(-5); // 5</code></pre></li>
+                                <li><code>Math.pow(base, exponent)</code>: Returns base raised to exponent. <br><strong>Example</strong>: <pre><code>Math.pow(2, 3); // 8</code></pre></li>
+                                <li><code>Math.sqrt(x)</code>: Returns square root. <br><strong>Example</strong>: <pre><code>Math.sqrt(16); // 4</code></pre></li>
+                                <li><code>Math.random()</code>: Returns random number between 0 and 1. <br><strong>Example</strong>: <pre><code>Math.random(); // e.g., 0.723</code></pre></li>
+                                <li><code>Math.max(...args)</code>, <code>Math.min(...args)</code>: Returns max/min value. <br><strong>Example</strong>: <pre><code>Math.max(1, 5, 3); // 5</code></pre></li>
+                            </ul>
+                            <p><strong>Constants</strong>: <code>Math.PI</code> (~3.14159), <code>Math.E</code> (~2.718).</p>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>console.log(Math.round(3.7)); // 4
+console.log(Math.floor(3.9)); // 3
+console.log(Math.pow(5, 2)); // 25
+console.log(Math.sqrt(25)); // 5
+console.log(Math.random() * 10); // Random number 0-10
+console.log(Math.PI); // 3.141592653589793</code></pre>
+                            <p><strong>Output</strong>: Varies for <code>Math.random()</code>, e.g., <br><code>4<br>3<br>25<br>5<br>7.234<br>3.141592653589793</code></p>
+                            <p><strong>Conclusion</strong>: The <code>Math</code> object’s functions and constants enable precise mathematical operations in JavaScript, essential for calculations in web applications and exam-ready answers.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-5" aria-expanded="false" aria-controls="q3-5">
+                            3. Write the basics of JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q3-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: JavaScript is a high-level, interpreted programming language primarily used for adding interactivity to webpages. It runs in browsers (client-side) and on servers (e.g., Node.js), supporting dynamic content and event handling.</p>
+                            <p><strong>Basic Features</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Syntax</strong>: C-like, with variables, loops, conditionals, and functions.</li>
+                                <li><strong>Dynamic Typing</strong>: Variables can hold any data type without explicit declaration.</li>
+                                <li><strong>Event-Driven</strong>: Responds to user actions like clicks or keypresses.</li>
+                                <li><strong>DOM Manipulation</strong>: Modifies HTML/CSS via the Document Object Model.</li>
+                                <li><strong>Asynchronous</strong>: Supports callbacks, promises, and async/await for non-blocking operations.</li>
+                            </ul>
+                            <p><strong>Core Components</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Variables</strong>: Declared with <code>var</code>, <code>let</code>, or <code>const</code>.</li>
+                                <li><strong>Data Types</strong>: Number, String, Boolean, Object, Array, etc.</li>
+                                <li><strong>Operators</strong>: Arithmetic (<code>+</code>, <code>-</code>), comparison (<code>==</code>, <code>===</code>), logical (<code>&&</code>, <code>||</code>).</li>
+                                <li><strong>Control Structures</strong>: <code>if</code>, <code>for</code>, <code>while</code>.</li>
+                                <li><strong>Functions</strong>: Reusable code blocks.</li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>let name = "Sudarshan";
+if (name.length > 5) {
+  console.log("Long name:", name.toUpperCase());
+}
+for (let i = 1; i <= 3; i++) {
+  console.log("Count:", i);
+}</code></pre>
+                            <p><strong>Output</strong>: <br><code>Long name: SUDARSHAN<br>Count: 1<br>Count: 2<br>Count: 3</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript’s basics—variables, data types, operators, control structures, and functions—enable dynamic web development. Understanding these fundamentals is key to mastering JavaScript and scoring well in exams.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 4 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4-5" aria-expanded="false" aria-controls="q4-5">
+                            4. Write the variable in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q4-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Variables in JavaScript are containers for storing data values, declared using <code>var</code>, <code>let</code>, or <code>const</code>. JavaScript is dynamically typed, so variables can hold any data type without explicit type declaration.</p>
+                            <p><strong>Variable Declarations</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>var</code>: Function-scoped, hoisted, reassignable. <br><strong>Example</strong>: <pre><code>var x = 10; x = 20;</code></pre></li>
+                                <li><code>let</code>: Block-scoped, reassignable, not hoisted. <br><strong>Example</strong>: <pre><code>let y = 5; y = 15;</code></pre></li>
+                                <li><code>const</code>: Block-scoped, cannot be reassigned, not hoisted. <br><strong>Example</strong>: <pre><code>const z = 30; // z = 40; // Error</code></pre></li>
+                            </ul>
+                            <p><strong>Key Points</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Scope</strong>: <code>var</code> is function-scoped; <code>let</code> and <code>const</code> are block-scoped.</li>
+                                <li><strong>Hoisting</strong>: <code>var</code> declarations are hoisted (initialized as <code>undefined</code>); <code>let</code> and <code>const</code> are not.</li>
+                                <li><strong>Reassignment</strong>: <code>const</code> prevents reassignment but allows mutable object changes (e.g., arrays).</li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>var a = 10;
+let b = 20;
+const c = 30;
+if (true) {
+  var a = 15; // Same 'a'
+  let b = 25; // New 'b'
+  console.log(a, b, c); // 15, 25, 30
+}
+console.log(a, b); // 15, 20
+const arr = [1, 2];
+arr.push(3); // Allowed
+// arr = [4, 5]; // Error</code></pre>
+                            <p><strong>Output</strong>: <br><code>15 25 30<br>15 20</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript variables, declared with <code>var</code>, <code>let</code>, or <code>const</code>, provide flexible data storage. Understanding their scope, hoisting, and reassignment rules is crucial for writing reliable code and exam success.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 5 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5-5" aria-expanded="false" aria-controls="q5-5">
+                            5. Write data types in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q5-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: JavaScript data types define the kind of data a variable can hold. JavaScript is dynamically typed, meaning variables can change types during execution. Data types are divided into primitive and non-primitive types.</p>
+                            <p><strong>Data Types</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Primitive Types</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>Number</code>: Integers or floats. <br><strong>Example</strong>: <code>let x = 42; let y = 3.14;</code></li>
+                                        <li><code>String</code>: Text in quotes. <br><strong>Example</strong>: <code>let str = "Hello";</code></li>
+                                        <li><code>Boolean</code>: <code>true</code> or <code>false</code>. <br><strong>Example</strong>: <code>let isTrue = true;</code></li>
+                                        <li><code>Undefined</code>: Uninitialized variable. <br><strong>Example</strong>: <code>let x; // undefined</code></li>
+                                        <li><code>Null</code>: Explicitly no value. <br><strong>Example</strong>: <code>let x = null;</code></li>
+                                        <li><code>Symbol</code> (ES6): Unique identifiers. <br><strong>Example</strong>: <code>let sym = Symbol("id");</code></li>
+                                        <li><code>BigInt</code> (ES2020): Large integers. <br><strong>Example</strong>: <code>let big = 123n;</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Non-Primitive Type</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>Object</code>: Key-value pairs, including arrays and functions. <br><strong>Example</strong>: <code>let obj = { name: "John" }; let arr = [1, 2];</code></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Type Checking</strong>: Use <code>typeof</code> operator. <br><strong>Example</strong>: <code>typeof 42; // "number"</code></p>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>let num = 100;
+let str = "JavaScript";
+let bool = false;
+let undef;
+let nul = null;
+let obj = { age: 25 };
+let arr = [1, 2, 3];
+let sym = Symbol("key");
+console.log(typeof num, typeof str, typeof bool, typeof undef, typeof nul, typeof obj, typeof arr, typeof sym);
+// number string boolean undefined object object object symbol</code></pre>
+                            <p><strong>Output</strong>: <br><code>number string boolean undefined object object object symbol</code></p>
+                            <p><strong>Conclusion</strong>: JavaScript’s primitive (Number, String, etc.) and non-primitive (Object) data types enable flexible data handling. Understanding these types and the <code>typeof</code> operator is essential for programming and exam performance.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 6 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6-5" aria-expanded="false" aria-controls="q6-5">
+                            6. Write difference between HTML, XHTML, and DHTML.
+                        </button>
+                    </h3>
+                    <div id="q6-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: HTML, XHTML, and DHTML are web technologies used to create webpages, each with distinct characteristics in structure, syntax, and functionality.</p>
+                            <p><strong>Differences</strong>:</p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>HTML</th>
+                                        <th>XHTML</th>
+                                        <th>DHTML</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Full Form</strong></td>
+                                        <td>HyperText Markup Language</td>
+                                        <td>Extensible HyperText Markup Language</td>
+                                        <td>Dynamic HyperText Markup Language</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Purpose</strong></td>
+                                        <td>Defines webpage structure and content.</td>
+                                        <td>Stricter, XML-based version of HTML.</td>
+                                        <td>Enhances HTML with dynamic interactivity.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Syntax</strong></td>
+                                        <td>Flexible; allows unclosed tags. <br><strong>Example</strong>: <code>&lt;p&gt;Text</code></td>
+                                        <td>Strict; requires well-formed XML. <br><strong>Example</strong>: <code>&lt;p&gt;Text&lt;/p&gt;</code></td>
+                                        <td>Combines HTML, CSS, JavaScript. <br><strong>Example</strong>: <code>&lt;div onclick="change()"&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Standards</strong></td>
+                                        <td>HTML5 (current), less rigid.</td>
+                                        <td>Follows XML rules; XHTML 1.0/1.1.</td>
+                                        <td>No separate standard; uses HTML/CSS/JS.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Interactivity</strong></td>
+                                        <td>Static content only.</td>
+                                        <td>Static, stricter markup.</td>
+                                        <td>Dynamic via JavaScript and CSS.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;!-- HTML --&gt;
+&lt;p&gt;Hello
+&lt;!-- XHTML --&gt;
+&lt;p&gt;Hello&lt;/p&gt;
+&lt;!-- DHTML --&gt;
+&lt;div style="color: blue;" onclick="this.style.color='red'"&gt;Click me&lt;/div&gt;
+&lt;script&gt;
+function change() { document.querySelector('div').style.color = 'red'; }
+&lt;/script&gt;</code></pre>
+                            <p><strong>Conclusion</strong>: HTML provides basic webpage structure, XHTML enforces stricter XML-based markup, and DHTML adds dynamic interactivity using HTML, CSS, and JavaScript. Understanding their differences is key for web development and exam answers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="mt-2">
+            <a href="https://github.com/Sudarshanbadli" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Sudarshan-Badli" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+            <a href="https://x.com/sudarshan_badli?t=4rxkwhdm80fYCRGuyv-nSg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.instagram.com/sudarshanbadli_7?igsh=azU0MDVibTB5bWFo" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p><p>&copy; 2025 Sudarshan Badli. All rights reserved.</p>
+                    <p class="mt-2">Made with ❤️ and <i class="fas fa-code text-white-500"></i></p>
+        
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Rotate Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('rotate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

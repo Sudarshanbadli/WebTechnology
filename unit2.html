@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2: CSS Study Guide</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        .navbar {
+            background: #dbeafe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #1e3a8a;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #10b981;
+            transform: scale(1.1);
+        }
+        /* Accordion */
+        .accordion-item {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #10b981;
+        }
+        .accordion-button {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+            border-radius: 12px !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background: #10b981;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background: #f9fafb;
+            border-radius: 0 0 12px 12px;
+        }
+        /* Progress Circle */
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .accordion-collapse.show .progress-circle {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Rotate Animation */
+        .rotate-in {
+            opacity: 0;
+            transform: rotateX(90deg);
+            animation: rotateIn 0.6s ease forwards;
+        }
+        @keyframes rotateIn {
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+        /* Code Block */
+        pre {
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Footer */
+        .footer {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #10b981;
+        }
+        .footer a {
+            color: #1e3a8a;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer a:hover {
+            color: #10b981;
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 576px) {
+            .accordion-item {
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Unit 2: CSS </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                       <li class="nav-item">
+                        <a class="nav-link" href="index.html">🏠 Home</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">✨About Us</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">✨Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- 10-Mark Questions -->
+        <section id="ten-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">10-Mark Questions</h2>
+            <div class="accordion" id="accordionTenMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1-10" aria-expanded="true" aria-controls="q1-10">
+                            1. Explain different properties and values used in CSS.
+                        </button>
+                    </h3>
+                    <div id="q1-10" class="accordion-collapse collapse show" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Cascading Style Sheets (CSS) is a stylesheet language used to style HTML elements, controlling their appearance and layout. CSS properties define specific styling aspects, and values specify how those aspects are rendered.</p>
+                            <p><strong>Categories of CSS Properties and Values</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Text Properties</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>color</code>: Sets text color. <br><strong>Values</strong>: Hex (<code>#FF0000</code>), RGB (<code>rgb(255,0,0)</code>), color names (<code>red</code>). <br><strong>Example</strong>: <pre><code>p { color: blue; }</code></pre></li>
+                                        <li><code>font-family</code>: Specifies font. <br><strong>Values</strong>: Font names (<code>Arial</code>), generic families (<code>sans-serif</code>). <br><strong>Example</strong>: <pre><code>h1 { font-family: Arial, sans-serif; }</code></pre></li>
+                                        <li><code>font-size</code>: Sets text size. <br><strong>Values</strong>: Pixels (<code>16px</code>), rem (<code>1rem</code>), percentages. <br><strong>Example</strong>: <pre><code>p { font-size: 14px; }</code></pre></li>
+                                        <li><code>font-weight</code>: Controls boldness. <br><strong>Values</strong>: <code>normal</code>, <code>bold</code>, numeric (<code>700</code>). <br><strong>Example</strong>: <pre><code>strong { font-weight: bold; }</code></pre></li>
+                                        <li><code>text-align</code>: Aligns text. <br><strong>Values</strong>: <code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code>. <br><strong>Example</strong>: <pre><code>div { text-align: center; }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Background Properties</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>background-color</code>: Sets background color. <br><strong>Values</strong>: Hex, RGB, names. <br><strong>Example</strong>: <pre><code>body { background-color: #f0f0f0; }</code></pre></li>
+                                        <li><code>background-image</code>: Adds a background image. <br><strong>Values</strong>: <code>url("image.jpg")</code>. <br><strong>Example</strong>: <pre><code>header { background-image: url("bg.jpg"); }</code></pre></li>
+                                        <li><code>background-repeat</code>: Controls image repetition. <br><strong>Values</strong>: <code>repeat</code>, <code>no-repeat</code>, <code>repeat-x</code>. <br><strong>Example</strong>: <pre><code>header { background-repeat: no-repeat; }</code></pre></li>
+                                        <li><code>background-position</code>: Positions the image. <br><strong>Values</strong>: <code>center</code>, <code>top left</code>, percentages. <br><strong>Example</strong>: <pre><code>header { background-position: center; }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Box Model Properties</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>margin</code>: Sets external spacing. <br><strong>Values</strong>: Pixels, <code>auto</code>, percentages. <br><strong>Example</strong>: <pre><code>div { margin: 10px 20px; }</code></pre></li>
+                                        <li><code>padding</code>: Sets internal spacing. <br><strong>Values</strong>: Pixels, percentages. <br><strong>Example</strong>: <pre><code>div { padding: 15px; }</code></pre></li>
+                                        <li><code>border</code>: Defines border style. <br><strong>Values</strong>: Width, style (<code>solid</code>, <code>dashed</code>), color. <br><strong>Example</strong>: <pre><code>div { border: 1px solid black; }</code></pre></li>
+                                        <li><code>width</code>, <code>height</code>: Sets dimensions. <br><strong>Values</strong>: Pixels, percentages, <code>auto</code>. <br><strong>Example</strong>: <pre><code>img { width: 200px; }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Layout Properties</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>display</code>: Controls element rendering. <br><strong>Values</strong>: <code>block</code>, <code>inline</code>, <code>flex</code>, <code>grid</code>. <br><strong>Example</strong>: <pre><code>ul { display: flex; }</code></pre></li>
+                                        <li><code>position</code>: Sets positioning method. <br><strong>Values</strong>: <code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code>. <br><strong>Example</strong>: <pre><code>div { position: absolute; top: 10px; }</code></pre></li>
+                                        <li><code>float</code>: Floats elements. <br><strong>Values</strong>: <code>left</code>, <code>right</code>, <code>none</code>. <br><strong>Example</strong>: <pre><code>img { float: left; }</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Transition and Animation</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><code>transition</code>: Smooths property changes. <br><strong>Values</strong>: Property, duration, timing-function. <br><strong>Example</strong>: <pre><code>a { transition: color 0.3s ease; }</code></pre></li>
+                                        <li><code>animation</code>: Applies keyframe animations. <br><strong>Values</strong>: Name, duration, iteration-count. <br><strong>Example</strong>: <pre><code>div { animation: slide 2s infinite; }</code></pre></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>body {
+  background-color: #f0f9ff;
+  font-family: Arial, sans-serif;
+}
+h1 {
+  color: #1e3a8a;
+  text-align: center;
+  font-size: 24px;
+}
+div {
+  margin: 20px;
+  padding: 15px;
+  border: 2px solid #10b981;
+  width: 300px;
+  display: block;
+}</code></pre>
+                            <p><strong>Conclusion</strong>: CSS properties and values cover text, background, box model, layout, and animations, enabling precise styling. Understanding these categories is essential for creating responsive, visually appealing webpages, ensuring high exam marks.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-10" aria-expanded="false" aria-controls="q2-10">
+                            2. Define your own style sheet with example.
+                        </button>
+                    </h3>
+                    <div id="q2-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: A style sheet is a collection of CSS rules that define the styling and layout of HTML elements. A custom style sheet is a developer-created CSS file that ensures consistent design across a website, using selectors, properties, and values tailored to specific requirements.</p>
+                            <p><strong>Steps to Create a Style Sheet</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li>Create a CSS file (e.g., <code>styles.css</code>).</li>
+                                <li>Link it to HTML using the <code>&lt;link&gt;</code> tag in the <code>&lt;head&gt;</code>.</li>
+                                <li>Define selectors (element, class, ID) to target elements.</li>
+                                <li>Specify properties and values for styling.</li>
+                                <li>Test across browsers and devices for compatibility.</li>
+                            </ol>
+                            <p><strong>Components</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Selectors</strong>: <code>h1</code>, <code>.class</code>, <code>#id</code>, <code>:hover</code>.</li>
+                                <li><strong>Properties</strong>: <code>color</code>, <code>margin</code>, <code>font-size</code>.</li>
+                                <li><strong>Values</strong>: <code>blue</code>, <code>10px</code>, <code>center</code>.</li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <p><strong>HTML (<code>index.html</code>)</strong>:</p>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Welcome to My Site&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="#home"&gt;Home&lt;/a&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;p class="content"&gt;This is the main content.&lt;/p&gt;
+    &lt;button class="btn"&gt;Click Me&lt;/button&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>CSS (<code>styles.css</code>)</strong>:</p>
+                            <pre><code>/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f9ff;
+}
+header {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+header h1 {
+  font-size: 2rem;
+}
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+nav a:hover {
+  color: #10b981;
+}
+.content {
+  margin: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.btn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #059669;
+}</code></pre>
+                            <p><strong>Output</strong>: A webpage with a navy header, centered white title, navigation links (turn green on hover), a paragraph with proper spacing, and a green button that darkens on hover.</p>
+                            <p><strong>Advantages</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Ensures consistent design across pages.</li>
+                                <li>Simplifies maintenance with centralized styles.</li>
+                                <li>Separates content (HTML) from presentation (CSS).</li>
+                                <li>Supports responsive design via media queries.</li>
+                            </ul>
+                            <p><strong>Conclusion</strong>: A custom style sheet, linked via <code>&lt;link&gt;</code>, provides a scalable and maintainable way to style webpages. The example demonstrates a professional design with reusable styles, ideal for exam answers and practical web development.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-10" aria-expanded="false" aria-controls="q3-10">
+                            3. Explain different types of style sheet (or) explain different formatting styles in CSS with suitable examples.
+                        </button>
+                    </h3>
+                    <div id="q3-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: CSS style sheets define the visual styling of HTML elements. They can be applied using three types—inline, internal (embedded), and external—each with unique integration methods and use cases.</p>
+                            <p><strong>Types of Style Sheets</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Inline Style Sheet</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><strong>Definition</strong>: CSS rules are applied directly to an HTML element using the <code>style</code> attribute.</li>
+                                        <li><strong>Use Case</strong>: Quick, one-off styling for specific elements.</li>
+                                        <li><strong>Advantages</strong>: Simple for small changes; no external file needed.</li>
+                                        <li><strong>Disadvantages</strong>: Difficult to maintain; mixes content and presentation; high specificity.</li>
+                                        <li><strong>Example</strong>: <pre><code>&lt;p style="color: blue; font-size: 16px;"&gt;Inline styled text&lt;/p&gt;</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Internal Style Sheet (Embedded)</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><strong>Definition</strong>: CSS rules are written within a <code>&lt;style&gt;</code> tag in the HTML <code>&lt;head&gt;</code> section.</li>
+                                        <li><strong>Use Case</strong>: Styling a single webpage without an external file.</li>
+                                        <li><strong>Advantages</strong>: Centralized styles within one file; no external request.</li>
+                                        <li><strong>Disadvantages</strong>: Not reusable across pages; increases HTML file size.</li>
+                                        <li><strong>Example</strong>: <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    h1 { color: #1e3a8a; text-align: center; }
+    p { font-size: 14px; margin: 10px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Internal Style&lt;/h1&gt;
+  &lt;p&gt;This is styled internally.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li>
+                                    </ul>
+                                </li>
+                                <li><strong>External Style Sheet</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li><strong>Definition</strong>: CSS rules are stored in a separate <code>.css</code> file, linked to HTML using the <code>&lt;link&gt;</code> tag.</li>
+                                        <li><strong>Use Case</strong>: Consistent styling across multiple webpages.</li>
+                                        <li><strong>Advantages</strong>: Reusable; easy to maintain; separates content and presentation.</li>
+                                        <li><strong>Disadvantages</strong>: Requires additional HTTP request; initial setup time.</li>
+                                        <li><strong>Example</strong>: 
+                                            <p><strong>HTML (<code>index.html</code>)</strong>: <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;External Style&lt;/h1&gt;
+  &lt;p&gt;This is styled externally.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></p>
+                                            <p><strong>CSS (<code>styles.css</code>)</strong>: <pre><code>h1 {
+  color: #10b981;
+  text-align: center;
+}
+p {
+  font-size: 16px;
+  padding: 10px;
+}</code></pre></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Cascade and Specificity</strong>: CSS prioritizes styles based on source (inline > internal > external) and specificity (ID > class > element). The <code>!important</code> rule can override others.</p>
+                            <p><strong>Conclusion</strong>: Inline, internal, and external style sheets offer flexibility for styling webpages. External style sheets are preferred for large projects due to maintainability, while inline and internal suit quick or single-page needs, ensuring efficient web design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-Mark Questions -->
+        <section id="five-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">5-Mark Questions</h2>
+            <div class="accordion" id="accordionFiveMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1-5" aria-expanded="false" aria-controls="q1-5">
+                            1. Discuss about formatting block of information in CSS.
+                        </button>
+                    </h3>
+                    <div id="q1-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Formatting a block of information in CSS involves styling block-level HTML elements (e.g., <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code>) to control their appearance, size, spacing, and layout. Block elements occupy the full width of their parent container and are used to structure content.</p>
+                            <p><strong>Key CSS Properties</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>display: block</code>: Ensures block-level rendering. <br><strong>Example</strong>: <pre><code>div { display: block; }</code></pre></li>
+                                <li><code>width</code>, <code>height</code>: Sets dimensions. <br><strong>Example</strong>: <pre><code>div { width: 400px; height: 200px; }</code></pre></li>
+                                <li><code>margin</code>: Controls external spacing. <br><strong>Example</strong>: <pre><code>div { margin: 20px auto; }</code></pre> (centers horizontally).</li>
+                                <li><code>padding</code>: Controls internal spacing. <br><strong>Example</strong>: <pre><code>div { padding: 15px; }</code></pre></li>
+                                <li><code>border</code>: Adds borders. <br><strong>Example</strong>: <pre><code>div { border: 2px solid #1e3a8a; }</code></pre></li>
+                                <li><code>background-color</code>: Sets background. <br><strong>Example</strong>: <pre><code>div { background-color: #dbeafe; }</code></pre></li>
+                                <li><code>box-shadow</code>: Adds shadow effects. <br><strong>Example</strong>: <pre><code>div { box-shadow: 0 4px 8px rgba(0,0,0,0.2); }</code></pre></li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    .block {
+      width: 400px;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #dbeafe;
+      border: 2px solid #10b981;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="block"&gt;
+    &lt;h2&gt;Block Content&lt;/h2&gt;
+    &lt;p&gt;Styled block of information.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Output</strong>: A centered block with a green border, light blue background, shadow, and padded content containing a heading and paragraph.</p>
+                            <p><strong>Conclusion</strong>: Formatting blocks in CSS using properties like <code>margin</code>, <code>padding</code>, <code>border</code>, and <code>background</code> creates structured, visually appealing layouts. These techniques are vital for organizing content effectively in web design, ensuring clarity and high marks.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-5" aria-expanded="false" aria-controls="q2-5">
+                            2. Discuss CSS layer in detail.
+                        </button>
+                    </h3>
+                    <div id="q2-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: CSS layers refer to the stacking of HTML elements along the z-axis, determining which elements appear in front of or behind others. The <code>z-index</code> property, used with positioned elements (<code>position: relative</code>, <code>absolute</code>, <code>fixed</code>, <code>sticky</code>), controls this stacking order, essential for complex layouts like modals or dropdowns.</p>
+                            <p><strong>Key Concepts</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>z-index</code>: Specifies the stack order. Higher values appear in front. <br><strong>Values</strong>: Integers (<code>10</code>, <code>-1</code>), default is <code>0</code>. <br><strong>Example</strong>: <pre><code>div { z-index: 100; }</code></pre></li>
+                                <li><strong>Positioning</strong>: <code>z-index</code> only works with <code>position</code> set to <code>relative</code>, <code>absolute</code>, <code>fixed</code>, or <code>sticky</code>.</li>
+                                <li><strong>Stacking Context</strong>: A parent element with <code>z-index</code>, <code>opacity</code>, or <code>transform</code> creates a stacking context, limiting child elements’ stacking relative to it.</li>
+                                <li><strong>Default Stacking</strong>: Without <code>z-index</code>, elements stack based on HTML order (later elements appear on top).</li>
+                            </ul>
+                            <p><strong>How Layers Work</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Elements with higher <code>z-index</code> overlap those with lower values.</li>
+                                <li>Negative <code>z-index</code> places elements behind others.</li>
+                                <li>Stacking contexts isolate child elements’ stacking behavior.</li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    .box {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+    }
+    .box1 { background-color: red; z-index: 1; top: 50px; left: 50px; }
+    .box2 { background-color: blue; z-index: 2; top: 70px; left: 70px; }
+    .box3 { background-color: green; z-index: 0; top: 90px; left: 90px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="box box1"&gt;&lt;/div&gt;
+  &lt;div class="box box2"&gt;&lt;/div&gt;
+  &lt;div class="box box3"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Output</strong>: Three overlapping boxes: blue (z-index: 2) on top, red (z-index: 1) in the middle, green (z-index: 0) at the bottom.</p>
+                            <p><strong>Use Cases</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Modals: High <code>z-index</code> to overlay content.</li>
+                                <li>Dropdown menus: Appear above other elements.</li>
+                                <li>Tooltips or popovers: Positioned over content.</li>
+                            </ul>
+                            <p><strong>Conclusion</strong>: CSS layers, managed via <code>z-index</code> and positioning, enable precise control over element stacking for dynamic layouts. Understanding stacking contexts is crucial for creating interactive, visually appealing webpages, ensuring high exam scores.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-5" aria-expanded="false" aria-controls="q3-5">
+                            3. What is CSS? Write its advantages.
+                        </button>
+                    </h3>
+                    <div id="q3-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Cascading Style Sheets (CSS) is a stylesheet language used to control the visual presentation of HTML elements, defining aspects like colors, fonts, layouts, and animations. It separates content (HTML) from styling (CSS), enhancing flexibility and maintainability.</p>
+                            <p><strong>Key Features</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Selectors</strong>: Target elements (e.g., <code>p</code>, <code>.class</code>, <code>#id</code>).</li>
+                                <li><strong>Properties</strong>: Define styling aspects (e.g., <code>color</code>, <code>margin</code>).</li>
+                                <li><strong>Values</strong>: Specify settings (e.g., <code>blue</code>, <code>10px</code>).</li>
+                                <li><strong>Cascade</strong>: Resolves style conflicts via specificity and source order.</li>
+                                <li><strong>Media Queries</strong>: Enable responsive design for different devices.</li>
+                            </ul>
+                            <p><strong>Advantages of CSS</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Separation of Content and Presentation</strong>: CSS keeps HTML focused on structure, with styles defined separately, improving readability and maintenance. <br><strong>Example</strong>: Update <code>styles.css</code> to change site-wide colors.</li>
+                                <li><strong>Consistency Across Pages</strong>: External style sheets ensure uniform design across a website. <br><strong>Example</strong>: A single <code>styles.css</code> styles all navigation bars.</li>
+                                <li><strong>Ease of Maintenance</strong>: Centralized styles allow quick updates. <br><strong>Example</strong>: Change font-family in one CSS rule for the entire site.</li>
+                                <li><strong>Advanced Styling Capabilities</strong>: Supports animations, transitions, flexbox, and grid layouts. <br><strong>Example</strong>: <pre><code>a { transition: color 0.3s ease; }</code></pre></li>
+                                <li><strong>Improved Accessibility</strong>: Media queries ensure responsive design for various devices. <br><strong>Example</strong>: <pre><code>@media (max-width: 600px) { body { font-size: 14px; } }</code></pre></li>
+                                <li><strong>Faster Page Loading</strong>: Cached external CSS files reduce load times. <br><strong>Example</strong>: A cached <code>styles.css</code> speeds up navigation.</li>
+                            </ol>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body { font-family: Arial, sans-serif; background-color: #f0f9ff; }
+    .container { max-width: 800px; margin: 0 auto; padding: 20px; background: white; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;CSS Styled Page&lt;/h1&gt;
+    &lt;p&gt;This page uses CSS.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Conclusion</strong>: CSS is a vital technology for web design, enabling precise control over presentation. Its advantages—separation of concerns, consistency, maintainability, advanced styling, accessibility, and performance—make it indispensable for creating professional websites, ensuring high marks in exams.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+         <div class="mt-2">
+            <a href="https://github.com/Sudarshanbadli" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Sudarshan-Badli" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+            <a href="https://x.com/sudarshan_badli?t=4rxkwhdm80fYCRGuyv-nSg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.instagram.com/sudarshanbadli_7?igsh=azU0MDVibTB5bWFo" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p><p>&copy; 2025 Sudarshan Badli. All rights reserved.</p>
+                    <p class="mt-2">Made with ❤️ and <i class="fas fa-code text-white-500"></i></p>
+        
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Rotate Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('rotate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

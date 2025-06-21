@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4:Advanced Javascript</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        .navbar {
+            background: #dbeafe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #1e3a8a;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #10b981;
+            transform: scale(1.1);
+        }
+        /* Accordion */
+        .accordion-item {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #10b981;
+        }
+        .accordion-button {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+            border-radius: 12px !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background: #10b981;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background: #f9fafb;
+            border-radius: 0 0 12px 12px;
+        }
+        /* Progress Circle */
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .accordion-collapse.show .progress-circle {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Rotate Animation */
+        .rotate-in {
+            opacity: 0;
+            transform: rotateX(90deg);
+            animation: rotateIn 0.6s ease forwards;
+        }
+        @keyframes rotateIn {
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+        /* Code Block */
+        pre {
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Footer */
+        .footer {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #10b981;
+        }
+        .footer a {
+            color: #1e3a8a;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer a:hover {
+            color: #10b981;
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 576px) {
+            .accordion-item {
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Unit 4: Advanced JS </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="index.html">🏠 Home</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">✨About Us</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">✨Contact Us</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- 10-Mark Questions -->
+        <section id="ten-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">10 Marks Questions</h2>
+            <div class="accordion" id="accordionTenMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1-10" aria-expanded="true" aria-controls="q1-10">
+                            1. What is Data Validation? Discuss with example.
+                        </button>
+                    </h3>
+                    <div id="q1-10" class="accordion-collapse collapse show" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Data validation in JavaScript is the process of checking user input or data to ensure it meets specific criteria (e.g., format, type, range) before processing, preventing errors or security issues in web applications.</p>
+                            <p><strong>Purpose</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Ensures data integrity and correctness.</li>
+                                <li>Prevents invalid submissions (e.g., empty fields, wrong formats).</li>
+                                <li>Enhances user experience with clear error messages.</li>
+                                <li>Protects against malicious input (e.g., SQL injection, XSS).</li>
+                            </ul>
+                            <p><strong>Techniques</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Client-Side Validation</strong>: Performed in the browser using JavaScript and HTML attributes (e.g., <code>required</code>, <code>pattern</code>).</li>
+                                <li><strong>Server-Side Validation</strong>: Essential for security, done on the server (complements client-side).</li>
+                                <li><strong>Regular Expressions</strong>: Validate formats like email or phone numbers.</li>
+                                <li><strong>Type Checking</strong>: Ensure correct data types (e.g., number, string).</li>
+                                <li><strong>Range Checking</strong>: Verify values within acceptable limits.</li>
+                            </ol>
+                            <p><strong>Complete Example</strong>: A form validating name (non-empty), email (valid format), and age (18–100).</p>
+                            <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    .error { color: red; }
+    .success { color: green; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form id="myForm"&gt;
+    &lt;label&gt;Name: &lt;input type="text" id="name"&gt;&lt;/label&gt;
+    &lt;p id="nameError" class="error"&gt;&lt;/p&gt;
+    &lt;label&gt;Email: &lt;input type="email" id="email"&gt;&lt;/label&gt;
+    &lt;p id="emailError" class="error"&gt;&lt;/p&gt;
+    &lt;label&gt;Age: &lt;input type="number" id="age"&gt;&lt;/label&gt;
+    &lt;p id="ageError" class="error"&gt;&lt;/p&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;p id="success" class="success"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let isValid = true;
+      // Name validation
+      const name = document.getElementById("name").value.trim();
+      const nameError = document.getElementById("nameError");
+      if (name === "") {
+        nameError.textContent = "Name is required";
+        isValid = false;
+      } else {
+        nameError.textContent = "";
+      }
+      // Email validation
+      const email = document.getElementById("email").value.trim();
+      const emailError = document.getElementById("emailError");
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(email)) {
+        emailError.textContent = "Invalid email format";
+        isValid = false;
+      } else {
+        emailError.textContent = "";
+      }
+      // Age validation
+      const age = parseInt(document.getElementById("age").value);
+      const ageError = document.getElementById("ageError");
+      if (isNaN(age) || age < 18 || age > 100) {
+        ageError.textContent = "Age must be between 18 and 100";
+        isValid = false;
+      } else {
+        ageError.textContent = "";
+      }
+      // Success message
+      const success = document.getElementById("success");
+      if (isValid) {
+        success.textContent = "Form submitted successfully!";
+      } else {
+        success.textContent = "";
+      }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Output</strong>: Displays error messages for invalid inputs (e.g., empty name, invalid email, age < 18) or a success message if all inputs are valid.</p>
+                            <p><strong>Conclusion</strong>: Data validation ensures reliable data processing in JavaScript applications. Using techniques like regex, type checking, and HTML attributes, as shown in the form example, is critical for user experience and security, ensuring high exam marks.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-10" aria-expanded="false" aria-controls="q2-10">
+                            2. Explain about exception handling in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q2-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Exception handling in JavaScript is the process of managing errors (exceptions) that occur during code execution, using <code>try</code>, <code>catch</code>, <code>finally</code>, and <code>throw</code> statements to ensure robust and graceful error recovery.</p>
+                            <p><strong>Key Components</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>try</strong>: Encloses code that might throw an error.
+                                    <pre><code>try { /* risky code */ }</code></pre>
+                                </li>
+                                <li><strong>catch</strong>: Handles the error if one occurs.
+                                    <pre><code>catch (error) { /* handle error */ }</code></pre>
+                                </li>
+                                <li><strong>finally</strong>: Executes code regardless of error (optional).
+                                    <pre><code>finally { /* cleanup code */ }</code></pre>
+                                </li>
+                                <li><strong>throw</strong>: Generates custom errors.
+                                    <pre><code>throw new Error("Message");</code></pre>
+                                </li>
+                            </ol>
+                            <p><strong>Error Object</strong>: Contains <code>name</code> (e.g., <code>TypeError</code>, <code>ReferenceError</code>) and <code>message</code> properties.</p>
+                            <p><strong>Common Errors</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>SyntaxError</code>: Invalid code syntax.</li>
+                                <li><code>ReferenceError</code>: Undefined variable.</li>
+                                <li><code>TypeError</code>: Invalid operation on a type.</li>
+                            </ul>
+                            <p><strong>Complete Example</strong>: A function dividing two numbers with error handling.</p>
+                            <pre><code>function divide(a, b) {
+  try {
+    if (b === 0) {
+      throw new Error("Division by zero is not allowed");
+    }
+    if (isNaN(a) || isNaN(b)) {
+      throw new TypeError("Inputs must be numbers");
+    }
+    const result = a / b;
+    console.log("Result:", result);
+    return result;
+  } catch (error) {
+    console.log("Error:", error.name, "-", error.message);
+    return null;
+  } finally {
+    console.log("Division operation completed");
+  }
+}
+divide(10, 2); // Result: 5, Division operation completed
+divide(10, 0); // Error: Error - Division by zero, Division operation completed null
+divide("10", null); // Error: TypeError - Inputs must be numbers, Division operation completed null
+</code></pre>
+                            <p><strong>Output</strong>:<br>
+                            <code>Result: 5<br>Division operation completed<br>Error: Error - Division by zero is not allowed<br>Division operation completed<br>null<br>Error: TypeError - Inputs must be numbers<br>Division operation completed<br>null</code></p>
+                            <p><strong>Conclusion</strong>: Exception handling in JavaScript, using <code>try</code>, <code>catch</code>, <code>finally</code>, and <code>throw</code>, ensures robust applications by gracefully managing errors. The example demonstrates error detection and recovery, critical for reliable code and exam success.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 (Fixed) -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-10" aria-expanded="false" aria-controls="q3-10">
+                            3. Explain about regular expressions.
+                        </button>
+                    </h3>
+                    <div id="q3-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Regular expressions (regex) in JavaScript are powerful patterns used to match and manipulate strings, defined using literal notation (<code>/pattern/flags</code>) or the <code>RegExp</code> constructor, commonly used for validation, searching, and replacing text.</p>
+                            <p><strong>Components</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Patterns</strong>: Define the match (e.g., <code>\d</code> for digits, <code>[a-z]</code> for lowercase letters).</li>
+                                <li><strong>Flags</strong>: Modify behavior (e.g., <code>i</code> for case-insensitive, <code>m</code> for multiline).</li>
+                                <li><strong>Quantifiers</strong>: Specify repetitions (e.g., <code>*</code> (0+), <code>+</code> (1+), <code>?</code> (0 or 1)).</li>
+                                <li><strong>Anchors</strong>: Match positions (e.g., <code>^</code> for start, <code>$</code> for end).</li>
+                            </ul>
+                            <p><strong>Common Methods</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>test()</code>: Checks if pattern matches. <br><strong>Example</strong>: <pre><code>/\d/.test("123"); // true</code></pre></li>
+                                <li><code>exec()</code>: Returns match details. <br><strong>Example</strong>: <pre><code>/\d/.exec("abc1"); // ["1"]</code></pre></li>
+                                <li><code>match()</code>: Returns all matches. <br><strong>Example</strong>: <pre><code>"a1b2".match(/\d/g); // ["1", "2"]</code></pre></li>
+                                <li><code>replace()</code>: Replaces matches. <br><strong>Example</strong>: <pre><code>"abc".replace(/b/, "x"); // "axc"</code></pre></li>
+                            </ul>
+                            <p><strong>Complete Example</strong>: Validating email and extracting digits.</p>
+                            <pre><code>const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+console.log(emailRegex.test("user@domain.com")); // true
+console.log(emailRegex.test("invalid.email")); // false
+const text = "My numbers are 123 and 456";
+const digitRegex = /\d+/g;
+const digits = text.match(digitRegex);
+console.log("Digits:", digits); // ["123", "456"]
+const replaced = text.replace(digitRegex, "X");
+console.log("Replaced:", replaced); // My numbers are X and X
+</code></pre>
+                            <p><strong>Output</strong>:<br>
+                            <code>true<br>false<br>Digits: ["123", "456"]<br>Replaced: My numbers are X and X</code></p>
+                            <p><strong>Conclusion</strong>: Regular expressions in JavaScript enable precise string matching and manipulation, vital for tasks like validation and data extraction. The example demonstrates their power, ensuring high marks in exams.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 4 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4-10" aria-expanded="false" aria-controls="q4-10">
+                            4. Explain about built-in objects in JavaScript.
+                        </button>
+                    </h3>
+                    <div id="q4-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Built-in objects in JavaScript are pre-defined objects provided by the JavaScript engine, offering properties and methods for common tasks like string manipulation, math operations, date handling, and more.</p>
+                            <p><strong>Common Built-in Objects</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Object</strong>: Base object for all objects.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>Object.keys()</code>, <code>Object.values()</code>.
+                                        <li>Example: <pre><code>let obj = {a: 1}; console.log(Object.keys(obj)); // ["a"]</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>Array</strong>: Manages ordered collections.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>push()</code>, <code>map()</code>, <code>filter()</code>.
+                                        <li>Example: <pre><code>let arr = [1, 2]; arr.push(3); // [1, 2, 3]</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>String</strong>: Handles text.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>toUpperCase()</code>, <code>slice()</code>.
+                                        <li>Example: <pre><code>"hi".toUpperCase(); // "HI"</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>Math</strong>: Performs mathematical operations.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>Math.random()</code>, <code>Math.floor()</code>.
+                                        <li>Example: <pre><code>Math.floor(4.7); // 4</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>Date</strong>: Manages dates and times.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>getFullYear()</code>, <code>setDate()</code>.
+                                        <li>Example: <pre><code>new Date().getFullYear(); // 2025</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>RegExp</strong>: Handles regular expressions.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>test()</code>, <code>exec()</code>.
+                                        <li>Example: <pre><code>/\d/.test("1"); // true</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>JSON</strong>: Parses and stringifies JSON data.
+                                    <ul class="list-disc ms-4">
+                                        <li>Methods: <code>JSON.parse()</code>, <code>JSON.stringify()</code>.
+                                        <li>Example: <pre><code>JSON.stringify({a: 1}); // '{"a":1}'</code></pre>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>let data = { name: "Sudarshan", age: 20 };
+console.log(Object.keys(data)); // ["name", "age"]
+let arr = ["a", "b"];
+arr.push("c");
+console.log(arr); // ["a", "b", "c"]
+let str = "hello";
+console.log(str.toUpperCase()); // "HELLO"
+console.log(Math.random()); // e.g., 0.723
+let now = new Date();
+console.log(now.getFullYear()); // 2025
+let regex = /\d/;
+console.log(regex.test("123")); // true
+let json = JSON.stringify(data);
+console.log(json); // '{"name":"Sudarshan","age":20}'
+</code></pre>
+                            <p><strong>Output</strong>:<br>
+                            <code>["name", "age"]<br>["a", "b", "c"]<br>HELLO<br>0.723 (varies)<br>2025<br>true<br>{"name":"Sudarshan","age":20}</code></p>
+                            <p><strong>Conclusion</strong>: Built-in objects like <code>Array</code>, <code>Math</code>, and <code>Date</code> provide essential functionality in JavaScript. Understanding their methods, as shown in the example, is key for efficient programming and exam success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-Mark Questions -->
+        <section id="five-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">5-Mark Questions</h2>
+            <div class="accordion" id="accordionFiveMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1-5" aria-expanded="false" aria-controls="q1-5">
+                            1. Write about how to open a new window?
+                        </button>
+                    </h3>
+                    <div id="q1-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Opening a new window in JavaScript involves using the <code>window.open()</code> method to create a new browser window or tab, allowing control over its URL, size, and features.</p>
+                            <p><strong>Syntax</strong>:<br>
+                            <code>window.open(url, name, features);</code></p>
+                            <ul class="list-disc ms-4">
+                                <li><code>url</code>: The URL to load (e.g., "https://example.com").</li>
+                                <li><code>name</code>: Window name (e.g., "_blank" for new tab).</li>
+                                <li><code>features</code>: Comma-separated settings (e.g., "width=500,height=400").</li>
+                            </ul>
+                            <p><strong>Features</strong>: <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>menubar</code>, <code>toolbar</code>, <code>resizable</code>.</p>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;html&gt;
+&lt;body&gt;
+  &lt;button onclick="openWindow()"&gt;Open New Window&lt;/button&gt;
+  &lt;script&gt;
+    function openWindow() {
+      const newWindow = window.open(
+        "https://example.com",
+        "_blank",
+        "width=600,height=400,top=100,left=100,resizable=yes"
+      );
+      if (newWindow) {
+        newWindow.focus();
+      } else {
+        alert("Popup blocked! Allow popups for this site.");
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Output</strong>: Clicking the button opens a new window (600x400 pixels) at position (100,100) loading "https://example.com". If popups are blocked, an alert is shown.</p>
+                            <p><strong>Notes</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Modern browsers may block popups by default.</li>
+                                <li>Use <code>newWindow.focus()</code> to bring the window to front.</li>
+                                <li><code>newWindow.close()</code> can close the window.</li>
+                            </ul>
+                            <p><strong>Conclusion</strong>: The <code>window.open()</code> method enables opening new windows with customizable features, as shown in the example. Understanding its usage is essential for web interactivity and exam answers.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-5" aria-expanded="false" aria-controls="q2-5">
+                            2. Write about message and confirmation dialog box.
+                        </button>
+                    </h3>
+                    <div id="q2-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Dialog boxes in JavaScript are modal windows that interact with users, displaying messages, collecting input, or confirming actions. They are created using the <code>window</code> object’s <code>alert</code>, <code>confirm</code>, and <code>prompt</code> methods.</p>
+                            <p><strong>Types of Dialog Boxes</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Alert Dialog Box</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Displays a message with an "OK" button.
+                                        <li>Syntax: <code>alert(message);</code>
+                                        <li>Use: Inform users of errors, warnings, or information.
+                                        <li>Example: <pre><code>alert("Form submitted successfully!");</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>Confirmation Dialog Box</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Displays a message with "OK" and "Cancel" buttons.
+                                        <li>Syntax: <code>confirm(message);</code>
+                                        <li>Returns: <code>true</code> (OK) or <code>false</code> (Cancel).
+                                        <li>Use: Confirm user actions (e.g., delete).
+                                        <li>Example: <pre><code>let result = confirm("Are you sure?"); // true or false</code></pre>
+                                    </ul>
+                                </li>
+                                <li><strong>Prompt Dialog Box</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Displays a message, input field, and "OK"/"Cancel" buttons.
+                                        <li>Syntax: <code>prompt(message, defaultValue);</code>
+                                        <li>Returns: User input (string) or <code>null</code> (Cancel).
+                                        <li>Use: Collect user input.
+                                        <li>Example: <pre><code>let name = prompt("Enter your name:", "Guest");</code></pre>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>:</p>
+                            <pre><code>&lt;html&gt;
+&lt;body&gt;
+  &lt;button onclick="showDialogs()"&gt;Show Dialogs&lt;/button&gt;
+  &lt;p id="output"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    function showDialogs() {
+      alert("Welcome to the dialog demo!");
+      let confirmResult = confirm("Do you want to continue?");
+      let output = document.getElementById("output");
+      if (confirmResult) {
+        let userInput = prompt("Enter your feedback:", "Great");
+        if (userInput !== null) {
+          output.textContent = "Feedback: " + userInput;
+        } else {
+          output.textContent = "Prompt cancelled";
+        }
+      } else {
+        output.textContent = "Confirmation cancelled";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <p><strong>Output</strong>: Shows an alert, then a confirmation dialog. If "OK" is clicked, a prompt appears; the output displays the user’s feedback or cancellation message.</p>
+                            <p><strong>Conclusion</strong>: JavaScript dialog boxes (<code>alert</code>, <code>confirm</code>, <code>prompt</code>) facilitate user interaction, as shown in the example. They are simple yet effective for web applications, ensuring clarity in exam answers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="mt-2">
+            <a href="https://github.com/Sudarshanbadli" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Sudarshan-Badli" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+            <a href="https://x.com/sudarshan_badli?t=4rxkwhdm80fYCRGuyv-nSg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.instagram.com/sudarshanbadli_7?igsh=azU0MDVibTB5bWFo" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p><p>&copy; 2025 Sudarshan Badli. All rights reserved.</p>
+                    <p class="mt-2">Made with ❤️ and <i class="fas fa-code text-white-500"></i></p>
+        
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Rotate Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('rotate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

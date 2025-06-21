@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5:XML & Web Services </title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        .navbar {
+            background: #dbeafe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #1e3a8a;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #10b981;
+            transform: scale(1.1);
+        }
+        /* Accordion */
+        .accordion-item {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #10b981;
+        }
+        .accordion-button {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+            border-radius: 12px !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background: #10b981;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background: #f9fafb;
+            border-radius: 0 0 12px 12px;
+        }
+        /* Progress Circle */
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .accordion-collapse.show .progress-circle {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Rotate Animation */
+        .rotate-in {
+            opacity: 0;
+            transform: rotateX(90deg);
+            animation: rotateIn 0.6s ease forwards;
+        }
+        @keyframes rotateIn {
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+        /* Code Block */
+        pre {
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Footer */
+        .footer {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #10b981;
+        }
+        .footer a {
+            color: #1e3a8a;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer a:hover {
+            color: #10b981;
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 576px) {
+            .accordion-item {
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Unit 5: XML & Web Services </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="index.html">🏠 Home</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">✨About Us</a>
+                    </li>
+                      
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">✨Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- 10-Mark Questions -->
+        <section id="ten-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">10-Mark Questions</h2>
+            <div class="accordion" id="accordionTenMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1-10" aria-expanded="true" aria-controls="q1-10">
+                            1. Explain about presenting of XML.
+                        </button>
+                    </h3>
+                    <div id="q1-10" class="accordion-collapse collapse show" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Presenting XML (Extensible Markup Language) involves transforming and displaying XML data in a user-friendly format, typically on web browsers, using technologies like CSS, XSLT (Extensible Stylesheet Language Transformations), or JavaScript to style and render the structured data.</p>
+                            <p><strong>Purpose</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Converts raw XML data into readable formats (e.g., tables, lists).</li>
+                                <li>Enhances user experience with styled presentations.</li>
+                                <li>Enables dynamic rendering of XML content in web applications.</li>
+                                <li>Separates content (XML) from presentation (CSS/XSLT).</li>
+                            </ul>
+                            <p><strong>Techniques for Presenting XML</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Using CSS</strong>: Apply styles directly to XML elements for simple formatting.
+                                    <ul class="list-disc ms-4">
+                                        <li>XML elements are styled like HTML with CSS properties.</li>
+                                        <li>Limited to static styling; less powerful than XSLT.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Using XSLT</strong>: Transform XML into HTML or other formats for complex presentations.
+                                    <ul class="list-disc ms-4">
+                                        <li>XSLT is a language for transforming XML documents.</li>
+                                        <li>Converts XML to HTML, which browsers render with CSS.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Using JavaScript</strong>: Parse XML and dynamically create HTML elements.
+                                    <ul class="list-disc ms-4">
+                                        <li>Uses DOM methods or libraries (e.g., jQuery, AJAX).</li>
+                                        <li>Suitable for dynamic, interactive presentations.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Complete Example</strong>: Presenting an XML file of student data using XSLT to generate an HTML table.</p>
+                            <p><strong>XML File (students.xml)</strong>:</p>
+                            <pre><code><?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="students.xsl"?>
+<students>
+    <student>
+        <name>Sudarshan</name>
+        <id>101</id>
+        <grade>A</grade>
+    </student>
+    <student>
+        <name>Priya</name>
+        <id>102</id>
+        <grade>B</grade>
+    </student>
+</students>
+</code></pre>
+                            <p><strong>XSLT File (students.xsl)</strong>:</p>
+                            <pre><code><?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:template match="/">
+<html>
+<head>
+    <title>Student Data</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #1e3a8a; padding: 8px; text-align: left; }
+        th { background-color: #10b981; color: white; }
+        tr:nth-child(even) { background-color: #f0f9ff; }
+    </style>
+</head>
+<body>
+    <h2>Student Records</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Grade</th>
+        </tr>
+        <xsl:for-each select="students/student">
+            <tr>
+                <td><xsl:value-of select="name"/></td>
+                <td><xsl:value-of select="id"/></td>
+                <td><xsl:value-of select="grade"/></td>
+            </tr>
+        </xsl:for-each>
+    </table>
+</body>
+</html>
+</xsl:template>
+</xsl:stylesheet>
+</code></pre>
+                            <p><strong>Output</strong>: When `students.xml` is opened in a browser, it displays a styled HTML table with columns for Name, ID, and Grade, showing “Sudarshan, 101, A” and “Priya, 102, B” in alternating row colors.</p>
+                            <p><strong>Steps to Run</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li>Save both files in the same directory.</li>
+                                <li>Ensure the XML file references the XSLT file.</li>
+                                <li>Open `students.xml` in a modern browser (e.g., Chrome).</li>
+                            </ol>
+                            <p><strong>Conclusion</strong>: Presenting XML using CSS, XSLT, or JavaScript makes data accessible and visually appealing. The XSLT example demonstrates transforming XML into a styled HTML table, a key skill for web applications and exam success.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-10" aria-expanded="false" aria-controls="q2-10">
+                            2. Explain about Document Object Model (DOM).
+                        </button>
+                    </h3>
+                    <div id="q2-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: The Document Object Model (DOM) is a programming interface provided by browsers that represents an HTML or XML document as a tree structure, where each node is an object (e.g., element, attribute, text), enabling dynamic manipulation using languages like JavaScript.</p>
+                            <p><strong>Key Features</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Tree Structure</strong>: Represents document as nodes (root: `<html>`, children: `<head>`, `<body>`, etc.).</li>
+                                <li><strong>Dynamic Access</strong>: Allows scripts to read, modify, add, or delete elements.</li>
+                                <li><span style="font-weight: bold;">Cross-Platform</span>: Standardized by W3C, works across browsers.</li>
+                                <li><strong>Event Handling</strong>: Supports events (e.g., click, keypress) for interactivity.</li>
+                            </ul>
+                            <p><strong>DOM Components</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>Nodes</strong>: Types include element (<code>&lt;div&gt;</code>), text, attribute, comment.</li>
+                                <li><strong>Properties</strong>: Access node details (e.g., <code>innerHTML</code>, <code>className</code>).</li>
+                                <li><strong>Methods</strong>: Manipulate DOM (e.g., <code>getElementById()</code>, <code>appendChild()</code>, <code>removeChild()</code>).</li>
+                                <li><strong>Events</strong>: Trigger actions (e.g., <code>onclick</code>, <code>onchange</code>).</li>
+                            </ol>
+                            <p><strong>DOM Methods</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><code>document.getElementById(id)</code>: Selects element by ID.</li>
+                                <li><code>document.querySelector(selector)</code>: Selects first matching element.</li>
+                                <li><code>element.innerHTML</code>: Gets/sets HTML content.</li>
+                                <li><code>element.setAttribute(name, value)</code>: Sets attribute value.</li>
+                                <li><code>element.addEventListener(event, function)</code>: Attaches event handler.</li>
+                            </ul>
+                            <p><strong>Complete Example</strong>: Manipulating a webpage to add, modify, and remove list items.</p>
+                            <pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;DOM Example&lt;/title&gt;
+    &lt;style&gt;
+        li { padding: 5px; background: #f0f9ff; margin: 2px; }
+        button { background: #10b981; color: white; padding: 5px 10px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Task List&lt;/h2&gt;
+    &lt;ul id="taskList"&gt;
+        &lt;li&gt;Task 1&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;input type="text" id="taskInput" placeholder="Enter task"&gt;
+    &lt;button onclick="addTask()"&gt;Add Task&lt;/button&gt;
+    &lt;button onclick="removeTask()"&gt;Remove Last Task&lt;/button&gt;
+    &lt;script&gt;
+        function addTask() {
+            const input = document.getElementById("taskInput");
+            const task = input.value.trim();
+            if (task === "") {
+                alert("Enter a task!");
+                return;
+            }
+            const ul = document.getElementById("taskList");
+            const li = document.createElement("li");
+            li.textContent = task;
+            li.addEventListener("click", function() {
+                this.style.textDecoration = "line-through";
+            });
+            ul.appendChild(li);
+            input.value = "";
+        }
+        function removeTask() {
+            const ul = document.getElementById("taskList");
+            const lastTask = ul.lastElementChild;
+            if (lastTask) {
+                ul.removeChild(lastTask);
+            } else {
+                alert("No tasks to remove!");
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Displays a list with “Task 1”. Users can add tasks via input (e.g., “Task 2”), which appear as list items. Clicking a task strikes it through; the “Remove Last Task” button deletes the last item. Alerts show for empty input or no tasks.</p>
+                            <p><strong>Conclusion</strong>: The DOM enables dynamic web page manipulation, as shown in the task list example. Understanding its structure, methods, and event handling is crucial for interactive web development and scoring high in exams.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-10" aria-expanded="false" aria-controls="q3-10">
+                            3. Write a short note on web services.
+                        </button>
+                    </h3>
+                    <div id="q3-10" class="accordion-collapse collapse" data-bs-parent="#accordionTenMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Web services are standardized applications or software components that communicate over the internet using protocols like HTTP, enabling interoperability between different systems, platforms, or devices to share data or perform functions.</p>
+                            <p><strong>Characteristics</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Interoperability</strong>: Works across languages (e.g., Java, Python) and platforms (e.g., Windows, Linux).</li>
+                                <li><strong>Standard Protocols</strong>: Uses HTTP, SOAP, REST, or gRPC.</li>
+                                <li><strong>Loose Coupling</strong>: Independent components communicate via defined interfaces.</li>
+                                <li><strong>Reusability</strong>: Services can be reused in multiple applications.</li>
+                            </ul>
+                            <p><strong>Types of Web Services</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li><strong>SOAP (Simple Object Access Protocol)</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>XML-based, uses WSDL for service description.</li>
+                                        <li>Secure, reliable, suited for enterprise applications.</li>
+                                        <li>Example: Banking transaction services.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>REST (Representational State Transfer)</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Uses HTTP methods (GET, POST, PUT, DELETE).</li>
+                                        <li>Lightweight, JSON/XML data, widely used in APIs.</li>
+                                        <li>Example: Social media APIs (e.g., Twitter API).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>GraphQL</strong>:
+                                    <ul class="list-disc ms-4">
+                                        <li>Allows clients to request specific data.</li>
+                                        <li>Flexible, efficient for complex queries.</li>
+                                        <li>Example: GitHub API.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>Components</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Service Provider</strong>: Hosts the web service.</li>
+                                <li><strong>Service Consumer</strong>: Client accessing the service.</li>
+                                <li><strong>Service Registry</strong>: Directory (e.g., UDDI) for discovering services.</li>
+                            </ul>
+                            <p><strong>Example</strong>: A REST API fetching user data.</p>
+                            <pre><code>// Server (Node.js with Express)
+const express = require('express');
+const app = express();
+app.get('/api/users', (req, res) => {
+    res.json([
+        { id: 1, name: 'Sudarshan' },
+        { id: 2, name: 'Priya' }
+    ]);
+});
+app.listen(3000, () => console.log('Server on port 3000'));
+
+// Client (JavaScript)
+fetch('http://localhost:3000/api/users')
+    .then(response => response.json())
+    .then(data => {
+        const ul = document.createElement('ul');
+        data.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${user.id}, Name: ${user.name}`;
+            ul.appendChild(li);
+        });
+        document.body.appendChild(ul);
+    })
+    .catch(error => console.error('Error:', error));
+</code></pre>
+                            <p><strong>Output</strong>: Displays a list: “ID: 1, Name: Sudarshan” and “ID: 2, Name: Priya” on the webpage.</p>
+                            <p><strong>Conclusion</strong>: Web services, like SOAP, REST, and GraphQL, enable seamless data exchange across systems. The REST example illustrates their practical use, ensuring clarity for exam answers and real-world applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-Mark Questions -->
+        <section id="five-marks" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">5-Mark Questions</h2>
+            <div class="accordion" id="accordionFiveMarks">
+                <!-- Question 1 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1-5" aria-expanded="false" aria-controls="q1-5">
+                            1. Write about basics of XML.
+                        </button>
+                    </h3>
+                    <div id="q1-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: XML (Extensible Markup Language) is a flexible, text-based markup language used to store, transport, and structure data in a hierarchical format, designed to be both human-readable and machine-readable.</p>
+                            <p><strong>Key Features</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Extensible</strong>: Users define custom tags.</li>
+                                <li><strong>Hierarchical</strong>: Data organized in a tree-like structure.</li>
+                                <li><strong>Platform-Independent</strong>: Works across systems.</li>
+                                <li><strong>Self-Descriptive</strong>: Tags describe data content.</li>
+                            </ul>
+                            <p><strong>Basic Syntax</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Declaration</strong>: <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code></li>
+                                <li><strong>Root Element</strong>: Single top-level element (e.g., <code>&lt;data&gt;</code>).</li>
+                                <li><strong>Tags</strong>: Paired (<code>&lt;tag&gt;content&lt;/tag&gt;</code>), case-sensitive.</li>
+                                <li><strong>Attributes</strong>: Provide metadata (e.g., <code>&lt;tag id="1"&gt;</code>).</li>
+                                <li><strong>Nesting</strong>: Elements can contain child elements.</li>
+                            </ul>
+                            <p><strong>Example</strong>:</p>
+                            <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;library&gt;
+    &lt;book id="101"&gt;
+        &lt;title&gt;Web Technology&lt;/title&gt;
+        &lt;author&gt;Sudarshan&lt;/author&gt;
+        &lt;year&gt;2025&lt;/year&gt;
+    &lt;/book&gt;
+    &lt;book id="102"&gt;
+        &lt;title&gt;JavaScript Basics&lt;/title&gt;
+        &lt;author&gt;Priya&lt;/author&gt;
+        &lt;year&gt;2024&lt;/year&gt;
+    &lt;/book&gt;
+&lt;/library&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Represents a library with two books, each with an ID, title, author, and year, viewable in text editors or browsers.</p>
+                            <p><strong>Uses</strong>: Data storage (e.g., configuration files), data exchange (e.g., APIs), document structuring (e.g., XHTML).</p>
+                            <p><strong>Conclusion</strong>: XML’s flexibility and structure make it ideal for data representation, as shown in the library example. Mastering its basics is essential for web development and exam success.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2-5" aria-expanded="false" aria-controls="q2-5">
+                            2. Write about Document Type Definition (DTD) in XML.
+                        </button>
+                    </h3>
+                    <div id="q2-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: A Document Type Definition (DTD) is a set of rules that defines the structure, elements, attributes, and content allowed in an XML document, ensuring its validity and consistency.</p>
+                            <p><strong>Purpose</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li>Validates XML structure against defined rules.</li>
+                                <li>Ensures data consistency across applications.</li>
+                                <li>Facilitates data sharing with standardized formats.</li>
+                            </ul>
+                            <p><strong>Components</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Elements</strong>: Define tags (e.g., <code>&lt;!ELEMENT name (#PCDATA)&gt;</code>).</li>
+                                <li><strong>Attributes</strong>: Specify properties (e.g., <code>&lt;!ATTLIST element attr CDATA #REQUIRED&gt;</code>).</li>
+                                <li><strong>Entities</strong>: Define reusable content (e.g., <code>&lt;!ENTITY name "value"&gt;</code>).</li>
+                                <li><strong>Content Models</strong>: Specify child elements or data (e.g., <code>(child1, child2)</code> for sequence).</li>
+                            </ul>
+                            <p><strong>Types</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Internal DTD</strong>: Defined within XML file.</li>
+                                <li><strong>External DTD</strong>: Defined in a separate .dtd file.</li>
+                            </ul>
+                            <p><strong>Example</strong>: Internal DTD for a book XML.</p>
+                            <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE book [
+    &lt;!ELEMENT book (title, author)&gt;
+    &lt;!ELEMENT title (#PCDATA)&gt;
+    &lt;!ELEMENT author (#PCDATA)&gt;
+    &lt;!ATTLIST book id CDATA #REQUIRED&gt;
+]&gt;
+&lt;book id="101"&gt;
+    &lt;title&gt;Web Technology&lt;/title&gt;
+    &lt;author&gt;Sudarshan&lt;/author&gt;
+&lt;/book&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Defines a valid book with required ID attribute, title, and author elements. Invalid XML (e.g., missing title) would fail validation.</p>
+                            <p><strong>Conclusion</strong>: DTD ensures XML document validity, as shown in the book example. Understanding its syntax and use is key for structured data and exam answers.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3-5" aria-expanded="false" aria-controls="q3-5">
+                            3. How to define data for web applications?
+                        </button>
+                    </h3>
+                    <div id="q3-5" class="accordion-collapse collapse" data-bs-parent="#accordionFiveMarks">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Definition</strong>: Defining data for web applications involves structuring and storing data in formats that are easily accessible, interoperable, and efficient, using technologies like JSON, XML, or databases to support application functionality.</p>
+                            <p><strong>Methods</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>JSON (JavaScript Object Notation)</strong>: Lightweight, used in APIs, human-readable.
+                                    <ul class="list-disc ms-4">
+                                        <li>Example: <code>{"name": "Sudarshan", "id": 101}</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>XML</strong>: Structured, used for complex data with DTD/Schema validation.
+                                    <ul class="list-disc ms-4">
+                                        <li>Example: <code>&lt;student&gt;&lt;name&gt;Sudarshan&lt;/name&gt;&lt;/student&gt;</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Databases</strong>: Store data persistently (e.g., MySQL, MongoDB).
+                                    <ul class="list-disc ms-4">
+                                        <li>Example: Table with columns “id”, “name”.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Local Storage/Session Storage</strong>: Browser-based storage for client-side data.
+                                    <ul class="list-disc ms-4">
+                                        <li>Example: <code>localStorage.setItem("user", "Sudarshan");</code></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p><strong>Steps</strong>:</p>
+                            <ol class="list-decimal ms-4">
+                                <li>Identify data requirements (e.g., user profiles, products).</li>
+                                <li>Choose format (JSON for APIs, XML for documents).</li>
+                                <li>Define structure (e.g., fields, relationships).</li>
+                                <li>Validate data (e.g., JSON Schema, XML DTD).</li>
+                                <li>Store and access (e.g., database queries, AJAX).</li>
+                            </ol>
+                            <p><strong>Example</strong>: Defining student data in JSON for a web app.</p>
+                            <pre><code>&lt;html&gt;
+&lt;body&gt;
+    &lt;h2&gt;Student Data&lt;/h2&gt;
+    &lt;ul id="studentList"&gt;&lt;/ul&gt;
+    &lt;script&gt;
+        const students = [
+            { id: 101, name: "Sudarshan", grade: "A" },
+            { id: 102, name: "Priya", grade: "B" }
+        ];
+        const ul = document.getElementById("studentList");
+        students.forEach(student => {
+            const li = document.createElement("li");
+            li.textContent = `ID: ${student.id}, Name: ${student.name}, Grade: ${student.grade}`;
+            ul.appendChild(li);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Displays a list: “ID: 101, Name: Sudarshan, Grade: A” and “ID: 102, Name: Priya, Grade: B”.</p>
+                            <p><strong>Conclusion</strong>: Defining data using JSON, XML, or databases ensures efficient web application functionality, as shown in the JSON example. This approach is vital for exams and practical development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+          <div class="mt-2">
+            <a href="https://github.com/Sudarshanbadli" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Sudarshan-Badli" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+            <a href="https://x.com/sudarshan_badli?t=4rxkwhdm80fYCRGuyv-nSg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.instagram.com/sudarshanbadli_7?igsh=azU0MDVibTB5bWFo" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            
+        </div>
+        <p><p>&copy; 2025 Sudarshan Badli. All rights reserved.</p>
+                    <p class="mt-2">Made with ❤️ and <i class="fas fa-code text-white-500"></i></p>
+        
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Rotate Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('rotate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Web Technology</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f9ff;
+            color: #1e3a8a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        .navbar {
+            background: #dbeafe;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #1e3a8a;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #10b981;
+            transform: scale(1.1);
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 3px solid #10b981;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #1e3a8a;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* Accordion */
+        .accordion-item {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #10b981;
+        }
+        .accordion-button {
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+            border-radius: 12px !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background: #10b981;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background: #f9fafb;
+            border-radius: 0 0 12px 12px;
+        }
+        /* Progress Circle */
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .accordion-collapse.show .progress-circle {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Rotate Animation */
+        .rotate-in {
+            opacity: 0;
+            transform: rotateX(90deg);
+            animation: rotateIn 0.6s ease forwards;
+        }
+        @keyframes rotateIn {
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+        /* CTA Cards */
+        .cta-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .cta-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            border: 2px solid #10b981;
+        }
+        .cta-card h3 {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        .cta-card a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .cta-card a:hover {
+            color: #1e3a8a;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Scroll-to-Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            transform: scale(1.1);
+            background: #1e3a8a;
+        }
+        /* Code Block */
+        pre {
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Footer */
+        .footer {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #10b981;
+        }
+        .footer a {
+            color: #1e3a8a;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer a:hover {
+            color: #10b981;
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .accordion-item, .cta-card {
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">Web Technology</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">🏠Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">✨Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Discover our mission to empower students with top-tier web technology resources for exam success and real-world skills.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- About Section -->
+        <section id="about" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">Who We Are</h2>
+            <div class="accordion" id="accordionAbout">
+                <!-- Our Mission -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mission" aria-expanded="true" aria-controls="mission">
+                            Our Mission
+                        </button>
+                    </h3>
+                    <div id="mission" class="accordion-collapse collapse show" data-bs-parent="#accordionAbout">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Vision</strong>: To provide accessible, high-quality web technology study materials that bridge academic learning and industry skills.</p>
+                            <p><strong>Focus</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Exam Success</strong>: Craft study guides with detailed, syllabus-aligned content.</li>
+                                <li><strong>Practical Skills</strong>: Include code examples for real-world application.</li>
+                                <li><strong>Engaging UI</strong>: Use modern designs to enhance learning.</li>
+                            </ul>
+                            <p><strong>Example</strong>: Sample HTML for a study guide page.</p>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Study Guide&lt;/title&gt;
+    &lt;style&gt;
+        body { background: #f0f9ff; }
+        h1 { color: #1e3a8a; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Web Tech Guide&lt;/h1&gt;
+    &lt;p&gt;Learn with interactive examples.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Displays a blue heading and paragraph on a light blue background.</p>
+                            <p><strong>Conclusion</strong>: Our mission drives us to deliver resources like this example, perfect for exams and skill-building.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Our Team -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#team" aria-expanded="false" aria-controls="team">
+                            Our Team
+                        </button>
+                    </h3>
+                    <div id="team" class="accordion-collapse collapse" data-bs-parent="#accordionAbout">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Overview</strong>: A passionate group of web developers, educators, and designers dedicated to student success.</p>
+                            <p><strong>Roles</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Developers</strong>: Build interactive, animated UI (e.g., glassmorphism cards).</li>
+                                <li><strong>Educators</strong>: Curate exam-focused content (e.g., HTTP, HTML).</li>
+                                <li><strong>Designers</strong>: Create vibrant, user-friendly interfaces.</li>
+                            </ul>
+                            <p><strong>Example</strong>: CSS for a team member card.</p>
+                            <pre><code>.team-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid #10b981;
+    padding: 1rem;
+    text-align: center;
+}
+&lt;div class="team-card"&gt;
+    &lt;h3&gt; Sudarshan Badli&lt;/h3&gt;
+    &lt;p&gt; Frontend Developer&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Displays a glassmorphism card with a name and role.</p>
+                            <p><strong>Conclusion</strong>: Our team’s expertise, as shown, ensures top-notch resources for your web tech journey.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Our Goals -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#goals" aria-expanded="false" aria-controls="goals">
+                            Our Goals
+                        </button>
+                    </h3>
+                    <div id="goals" class="accordion-collapse collapse" data-bs-parent="#accordionAbout">
+                        <div class="accordion-body">
+                            <span class="progress-circle me-2"></span>
+                            <p><strong>Objective</strong>: To expand our platform with more interactive tools and resources for web technology learners.</p>
+                            <p><strong>Plans</strong>:</p>
+                            <ul class="list-disc ms-4">
+                                <li><strong>Quizzes</strong>: Add interactive web tech quizzes.</li>
+                                <li><strong>Tutorials</strong>: Offer video and code-based guides.</li>
+                                <li><strong>Community</strong>: Build forums for student collaboration.</li>
+                            </ul>
+                            <p><strong>Example</strong>: JavaScript for a quiz button.</p>
+                            <pre><code>&lt;button onclick="startQuiz()"&gt;Start Quiz&lt;/button&gt;
+&lt;script&gt;
+function startQuiz() {
+    alert('Quiz on Web Technology started!');
+}
+&lt;/script&gt;
+</code></pre>
+                            <p><strong>Output</strong>: Clicking the button shows an alert to start a quiz.</p>
+                            <p><strong>Conclusion</strong>: Our goals, like the quiz example, aim to enhance your learning experience and exam prep.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call-to-Action Section -->
+        <section id="cta" class="mb-5">
+            <h2 class="text-3xl fw-bold mb-4">Explore More</h2>
+            <div class="row">
+                <!-- Home Page Card -->
+                <div class="col-md-6 mb-4">
+                    <div class="cta-card">
+                        <h3>Back to Home</h3>
+                        <p>Discover fundamentals and unit guides.</p>
+                        <a href="index.html">Visit Home</a>
+                    </div>
+                </div>
+                <!-- Units Card -->
+                <div class="col-md-6 mb-4">
+                    <div class="cta-card">
+                        <h3>Study Units</h3>
+                        <p>Dive into Units 1–5 for exam success.</p>
+                        <a href="index.html#units">Explore Units</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll-to-Top Button -->
+    <button class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+           <div class="mt-2">
+            <a href="https://github.com/Sudarshanbadli" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Sudarshan-Badli" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+            <a href="https://x.com/sudarshan_badli?t=4rxkwhdm80fYCRGuyv-nSg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.instagram.com/sudarshanbadli_7?igsh=azU0MDVibTB5bWFo" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p><p>&copy; 2025 Sudarshan Badli. All rights reserved.</p>
+                    <p class="mt-2">Made with ❤️ and <i class="fas fa-code text-white-500"></i></p>
+          
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Rotate Animation for Accordions and Fade-In for Cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(entry.target.classList.contains('accordion-item') ? 'rotate-in' : 'fadeIn');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.accordion-item, .cta-card').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Scroll-to-Top Button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
