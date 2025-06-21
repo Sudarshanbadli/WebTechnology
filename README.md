@@ -95,8 +95,8 @@ We’d love your contributions! 🙌
 5. Open a Pull Request.
 
 ## 📬 Contact
-- **Email**: [support@webtech.com](mailto:sudarshanbadli97@gmail.com)
-- **GitHub**: [your-username](https://github.com/Sudarshanbadli/)
+- **Email**: [sudarshanbadli97@gmail.com](mailto:sudarshanbadli97@gmail.com)
+- **GitHub**: [https://github.com/Sudarshanbadli/](https://github.com/Sudarshanbadli/)
 
 ---
 
